@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Will you be my Valentine?</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #ffeef6);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  h1 {
+    color: #ff4d88;
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+  }
+
+  button {
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  }
+
+  #yesBtn {
+    background: #ff4d88;
+    color: white;
+  }
+
+  #noBtn {
+    background: white;
+    color: #ff4d88;
+    position: absolute;
+  }
+
+  .hidden { display: none; }
+
+  #result img {
+    width: 260px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  #message {
+    font-size: 1.6rem;
+    color: #ff4d88;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container" id="questionBox">
+  <h1>My cutie cat, Will you be my Valentine? 💕</h1>
+  <button id="yesBtn">Yes 🥺</button>
+  <button id="noBtn">No 😾</button>
+</div>
+
+<div id="result" class="hidden">
+  <h1>YAYYYYY!!! 💖</h1>
+  <div id="message">This is the best thing I could ever hope for 😭💕</div>
+  <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131" alt="cats in love">
+</div>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const questionBox = document.getElementById('questionBox');
+const result = document.getElementById('result');
+
+function moveButton() {
+  const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+  const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+}
+
+noBtn.addEventListener('mouseover', moveButton);
+noBtn.addEventListener('click', moveButton);
+
+yesBtn.addEventListener('click', () => {
+  questionBox.classList.add('hidden');
+  result.classList.remove('hidden');
+  document.body.style.overflow = 'auto';
+});
+</script>
+</body>
+</html>
