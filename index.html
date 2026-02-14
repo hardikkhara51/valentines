@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Popo 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #ffeef6);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  h1 {
+    color: #ff4d88;
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+  }
+
+  button {
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  }
+
+  #yesBtn {
+    background: #ff4d88;
+    color: white;
+  }
+
+  #noBtn {
+    background: white;
+    color: #ff4d88;
+    position: absolute;
+  }
+
+  .hidden { display: none; }
+
+  #result img {
+    width: 260px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  #message {
+    font-size: 1.6rem;
+    color: #ff4d88;
+    margin-top: 20px;
+  }
+
+  /* Floating Hearts */
+  .heart {
+    position: absolute;
+    color: #ff4d88;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-100vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4b2c9c6b6e.mp3" type="audio/mpeg">
+</audio>
+
+<div id="questionBox">
+  <h1>My cutie cat Popo, will you be my Valentine? 💕</h1>
+  <button id="yesBtn">Yes 🥺</button>
+  <button id="noBtn">No 😾</button>
+</div>
+
+<div id="result" class="hidden">
+  <h1>YAYYYY POPOOOO!!! 💖</h1>
+  <div id="message">This is the best thing I could ever hope for. You make my world brighter every single day 💕</div>
+  <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131" alt="cats in love">
+</div>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const questionBox = document.getElementById('questionBox');
+const result = document.getElementById('result');
+const bgMusic = document.getElementById('bgMusic');
+
+// Move No button randomly
+function moveButton() {
+  const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+  const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+}
+
+noBtn.addEventListener('mouseover', moveButton);
+noBtn.addEventListener('click', moveButton);
+
+// Yes button action
+yesBtn.addEventListener('click', () => {
+  questionBox.classList.add('hidden');
+  result.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  bgMusic.play();
+});
+
+// Generate floating hearts
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '💖';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+  heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
